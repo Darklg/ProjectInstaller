@@ -1,0 +1,45 @@
+{
+    "folders": [
+        {
+            "folder_exclude_patterns": [
+                "htdocs"
+            ],
+            "path": "."
+        },
+        {
+            "folder_exclude_patterns": [
+                "acf-*",
+                "admin-col*",
+                "polylang*",
+                "limit-*",
+                "redis-*",
+                "duplicate-*",
+                "happyf*",
+                "wp-katex*",
+                "crop-thumbnails*",
+                "advanced-*"
+            ],
+            "path": "htdocs/wp-content/plugins/"
+        },
+        {
+            "path": "htdocs/wp-content/mu-plugins/"
+        },
+        {
+            "folder_exclude_patterns": [
+                "WPUTheme"
+            ],
+            "path": "htdocs/wp-content/themes/"
+        },
+        {
+            "folder_exclude_patterns": [
+                "themes",
+                "languages",
+                "plugins",
+                "mu-plugins",
+                "upgrade",
+                "uploads"
+            ],
+            "path": "htdocs/wp-content/"
+        }
+    ]
+}
