@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_VERSION='0.1.1';
+_VERSION='0.1.2';
 cat <<EOF
 
 ###################################
@@ -56,6 +56,9 @@ git submodule update --init --recursive;
 ## Install Project
 ###################################
 
+# Deploy
+. "${SCRIPTDIR}inc/deploy.sh";
+
 # Composer
 if [[ -f "composer.json" ]];then
     composer install;
@@ -63,5 +66,5 @@ fi;
 
 # WP-Config
 if [[ "${_INSTALL_CMS}" == 'wordpress' ]];then
-    cp "${SCRIPTDIR}/tpl/sublime-project__wordpress.txt" "${_PROJECT_NAME}.sublime-project";
+    . "${SCRIPTDIR}inc/install-wp.sh";
 fi;
