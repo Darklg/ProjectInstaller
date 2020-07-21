@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_VERSION='0.1.3';
+_VERSION='0.1.4';
 cat <<EOF
 
 ###################################
@@ -31,6 +31,8 @@ BASEDIR="$(pwd)/";
 
 if [[ "${_INSTALL_TYPE}" == 'local' ]];then
     . "${SCRIPTDIR}inc/settings-local.sh";
+else
+    . "${SCRIPTDIR}inc/settings-notlocal.sh";
 fi;
 
 . "${SCRIPTDIR}inc/settings-all.sh";

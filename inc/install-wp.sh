@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "${_INSTALL_FOLDER}";
+cd "${BASEDIR}${_INSTALL_FOLDER}";
 
 ###################################
 ## Generate WP-Config
