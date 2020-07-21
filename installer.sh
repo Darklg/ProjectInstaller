@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_VERSION='0.1.2';
+_VERSION='0.1.3';
 cat <<EOF
 
 ###################################
@@ -31,10 +31,9 @@ BASEDIR="$(pwd)/";
 
 if [[ "${_INSTALL_TYPE}" == 'local' ]];then
     . "${SCRIPTDIR}inc/settings-local.sh";
-else
-    mkdir "${BASEDIR}logs";
 fi;
-mkdir "${BASEDIR}backups";
+
+. "${SCRIPTDIR}inc/settings-all.sh";
 
 ###################################
 ## Import database
