@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_VERSION='0.1.4';
+_VERSION='0.2.0';
 cat <<EOF
 
 ###################################
@@ -38,14 +38,6 @@ fi;
 . "${SCRIPTDIR}inc/settings-all.sh";
 
 ###################################
-## Import database
-###################################
-
-if [[ -f "dump.sql" ]];then
-    echo "# Import database";
-fi;
-
-###################################
 ## Clone Project
 ###################################
 
@@ -69,3 +61,21 @@ fi;
 if [[ "${_INSTALL_CMS}" == 'wordpress' ]];then
     . "${SCRIPTDIR}inc/install-wp.sh";
 fi;
+
+###################################
+## Import database
+###################################
+
+cd "${BASEDIR}${_INSTALL_FOLDER}";
+
+if [[ -f "${BASEDIR}dump.sql" ]];then
+    echo "# Import database";
+    mysql -h "${_MYSQL_HOST}" -u "${_MYSQL_USER}" -p "${_MYSQL_PASS}" "${_MYSQL_BASE}" < "${BASEDIR}dump.sql";
+fi;
+
+if [[ -f "${BASEDIR}dump.tar.gz" ]];then
+    echo "# Import database";
+    . "${BASEDIR}wputools/wputools.sh" dbimport "${BASEDIR}dump.tar.gz";
+fi;
+
+cd "${BASEDIR}";
