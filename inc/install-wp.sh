@@ -50,3 +50,9 @@ PHP
 ###################################
 
 php "${BASEDIR}wp-cli.phar" rewrite flush --hard;
+
+###################################
+## Create settings file
+###################################
+
+. "${BASEDIR}wputools/wputools.sh" settings

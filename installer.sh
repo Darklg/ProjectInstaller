@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_VERSION='0.2.0';
+_VERSION='0.2.1';
 cat <<EOF
 
 ###################################
@@ -46,23 +46,6 @@ cd "${_INSTALL_FOLDER}";
 git submodule update --init --recursive;
 
 ###################################
-## Install Project
-###################################
-
-# Deploy
-. "${SCRIPTDIR}inc/deploy.sh";
-
-# Composer
-if [[ -f "composer.json" ]];then
-    composer install;
-fi;
-
-# WP-Config
-if [[ "${_INSTALL_CMS}" == 'wordpress' ]];then
-    . "${SCRIPTDIR}inc/install-wp.sh";
-fi;
-
-###################################
 ## Import database
 ###################################
 
@@ -76,6 +59,27 @@ fi;
 if [[ -f "${BASEDIR}dump.tar.gz" ]];then
     echo "# Import database";
     . "${BASEDIR}wputools/wputools.sh" dbimport "${BASEDIR}dump.tar.gz";
+fi;
+
+cd "${BASEDIR}";
+
+###################################
+## Install Project
+###################################
+
+# Deploy
+. "${SCRIPTDIR}inc/deploy.sh";
+
+cd "${BASEDIR}${_INSTALL_FOLDER}";
+
+# Composer
+if [[ -f "composer.json" ]];then
+    composer install;
+fi;
+
+# WP-Config
+if [[ "${_INSTALL_CMS}" == 'wordpress' ]];then
+    . "${SCRIPTDIR}inc/install-wp.sh";
 fi;
 
 cd "${BASEDIR}";
