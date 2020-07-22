@@ -46,6 +46,15 @@ if (WP_DEBUG) {
 PHP
 
 ###################################
+## Database
+###################################
+
+if [[ -f "${BASEDIR}dump.tar.gz" ]];then
+    echo "# Import database";
+    . "${BASEDIR}wputools/wputools.sh" dbimport "${BASEDIR}dump.tar.gz";
+fi;
+
+###################################
 ## Flush
 ###################################
 

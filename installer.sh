@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_VERSION='0.2.1';
+_VERSION='0.2.2';
 cat <<EOF
 
 ###################################
@@ -56,11 +56,6 @@ if [[ -f "${BASEDIR}dump.sql" ]];then
     mysql -h "${_MYSQL_HOST}" -u "${_MYSQL_USER}" -p "${_MYSQL_PASS}" "${_MYSQL_BASE}" < "${BASEDIR}dump.sql";
 fi;
 
-if [[ -f "${BASEDIR}dump.tar.gz" ]];then
-    echo "# Import database";
-    . "${BASEDIR}wputools/wputools.sh" dbimport "${BASEDIR}dump.tar.gz";
-fi;
-
 cd "${BASEDIR}";
 
 ###################################
@@ -70,16 +65,15 @@ cd "${BASEDIR}";
 # Deploy
 . "${SCRIPTDIR}inc/deploy.sh";
 
-cd "${BASEDIR}${_INSTALL_FOLDER}";
-
 # Composer
+cd "${BASEDIR}${_INSTALL_FOLDER}";
 if [[ -f "composer.json" ]];then
     composer install;
 fi;
+cd "${BASEDIR}";
 
 # WP-Config
 if [[ "${_INSTALL_CMS}" == 'wordpress' ]];then
     . "${SCRIPTDIR}inc/install-wp.sh";
 fi;
 
-cd "${BASEDIR}";
