@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_VERSION='0.2.3';
+_VERSION='0.2.4';
 cat <<EOF
 
 ###################################
@@ -53,7 +53,7 @@ cd "${BASEDIR}${_INSTALL_FOLDER}";
 
 if [[ -f "${BASEDIR}dump.sql" ]];then
     echo "# Import database";
-    mysql -h "${_MYSQL_HOST}" -u "${_MYSQL_USER}" -p "${_MYSQL_PASS}" "${_MYSQL_BASE}" < "${BASEDIR}dump.sql";
+    mysql -h "${_MYSQL_HOST}" -u "${_MYSQL_USER}" -p"${_MYSQL_PASS}" "${_MYSQL_BASE}" < "${BASEDIR}dump.sql";
 fi;
 
 cd "${BASEDIR}";
@@ -77,3 +77,7 @@ if [[ "${_INSTALL_CMS}" == 'wordpress' ]];then
     . "${SCRIPTDIR}inc/install-wp.sh";
 fi;
 
+cd "${BASEDIR}";
+if [[ -f "${BASEDIR}post-install.sh" ]];then
+    . "${BASEDIR}post-install.sh";
+fi;
