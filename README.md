@@ -2,7 +2,7 @@
 
 ## How to Install :
 
-- Clone anywhere in your dev folder this repository.
+- Clone this repository anywhere in your dev folder.
 - Create a config file like this :
 
 ```
