@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_VERSION='0.2.4';
+_VERSION='0.2.5';
 cat <<EOF
 
 ###################################
@@ -15,6 +15,11 @@ EOF
 
 if [[ -z "${_MYSQL_USER}" ]];then
     echo "Missing config file."
+    return 0;
+fi;
+
+if [[ -d "${_INSTALL_FOLDER}" ]];then
+    echo "Project is already installed."
     return 0;
 fi;
 
