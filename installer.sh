@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_VERSION='0.2.5';
+_VERSION='0.3.0';
 cat <<EOF
 
 ###################################
@@ -51,15 +51,18 @@ cd "${_INSTALL_FOLDER}";
 git submodule update --init --recursive;
 
 ###################################
-## Import database
+## Import first SQL Available
 ###################################
 
 cd "${BASEDIR}${_INSTALL_FOLDER}";
 
-if [[ -f "${BASEDIR}dump.sql" ]];then
-    echo "# Import database";
-    mysql -h "${_MYSQL_HOST}" -u "${_MYSQL_USER}" -p"${_MYSQL_PASS}" "${_MYSQL_BASE}" < "${BASEDIR}dump.sql";
-fi;
+_SQL_FILES="${BASEDIR}*.sql";
+
+for _sql_file in $_SQL_FILES; do
+    echo "# Import database : ${_sql_file}";
+    mysql -h "${_MYSQL_HOST}" -u "${_MYSQL_USER}" -p"${_MYSQL_PASS}" "${_MYSQL_BASE}" < "${_sql_file}";
+    break 1;
+done
 
 cd "${BASEDIR}";
 

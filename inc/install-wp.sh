@@ -3,6 +3,15 @@
 cd "${BASEDIR}${_INSTALL_FOLDER}";
 
 ###################################
+## Test WordPress
+###################################
+
+if [[ ! -d "wp-includes" ]];then
+    echo "# No WordPress install was found.";
+    return 0;
+fi;
+
+###################################
 ## Generate WP-Config
 ###################################
 
@@ -37,7 +46,7 @@ define('WP_DEBUG', true);
 if (WP_DEBUG) {
     @ini_set('display_errors', 0);
     if (!defined('WP_DEBUG_LOG')) { define('WP_DEBUG_LOG', '${BASEDIR}logs/debug-' . date('dmY') . '.log'); }
-    if (!defined('WP_DEBUG_DISPLAY')) { define('WP_DEBUG_DISPLAY', false); }
+    if (!defined('WP_DEBUG_DISPLAY')) { define('WP_DEBUG_DISPLAY', 1); }
     if (!defined('SCRIPT_DEBUG')) { define('SCRIPT_DEBUG', 1); }
     if (!defined('SAVEQUERIES')) { define('SAVEQUERIES', 1); }
 }
