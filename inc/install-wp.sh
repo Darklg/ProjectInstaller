@@ -15,6 +15,15 @@ fi;
 ## Generate WP-Config
 ###################################
 
+_PHP_EXTRA="";
+if [[ "${_PROJECT_HTTP}" == 'https' ]];then
+    _PHP_EXTRA=$(cat <<PHP
+\$_SERVER['REQUEST_SCHEME'] = 'https';
+\$_SERVER['HTTPS'] = 'on';
+PHP
+);
+fi;
+
 php "${BASEDIR}wp-cli.phar" core config --dbhost=${_MYSQL_HOST} --dbname=${_MYSQL_BASE} --dbuser=${_MYSQL_USER} --dbpass=${_MYSQL_PASS} --dbprefix=${_MYSQL_PREFIX} --extra-php <<PHP
 
 # URLs
@@ -24,6 +33,9 @@ if(!isset(\$_SERVER['HTTP_HOST']) || !\$_SERVER['HTTP_HOST']){
 if(!isset(\$_SERVER['SERVER_PROTOCOL']) || !\$_SERVER['SERVER_PROTOCOL']){
     \$_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.0';
 }
+
+${_PHP_EXTRA}
+
 define('WP_SITEURL', '${_PROJECT_HTTP}://' . \$_SERVER['HTTP_HOST'] . '/');
 define('WP_HOME', '${_PROJECT_HTTP}://' . \$_SERVER['HTTP_HOST'] . '/');
 
@@ -51,7 +63,6 @@ if (WP_DEBUG) {
     if (!defined('SAVEQUERIES')) { define('SAVEQUERIES', 1); }
 }
 
-##WPUINSTALLER##
 PHP
 
 ###################################
@@ -74,3 +85,11 @@ php "${BASEDIR}wp-cli.phar" rewrite flush --hard;
 ###################################
 
 . "${BASEDIR}wputools/wputools.sh" settings
+
+###################################
+## Remove tmp WPUTools
+###################################
+
+if [[ "${_INSTALL_TYPE}" == 'local' ]];then
+    rm -rf "${BASEDIR}wputools";
+fi;

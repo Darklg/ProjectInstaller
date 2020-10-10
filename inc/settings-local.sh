@@ -6,7 +6,7 @@ if [[ ! -f  "${BASEDIR}.wakatime" ]];then
 fi;
 
 # Editor Config
-_EDITOR_CONFIG_FILE="${BASEDIR}${_INSTALL_FOLDER}/.editorconfig";
+_EDITOR_CONFIG_FILE="${BASEDIR}/.editorconfig";
 if [[ ! -f "${_EDITOR_CONFIG_FILE}" ]];then
     cp "${SCRIPTDIR}/tpl/editorconfig.txt" "${_EDITOR_CONFIG_FILE}";
 fi;
@@ -17,6 +17,10 @@ if [[ "${_INSTALL_CMS}" == 'wordpress' ]];then
     _SUBLIME_PROJECT_FILE="${BASEDIR}${_PROJECT_NAME}.sublime-project";
     if [[ ! -f "${_SUBLIME_PROJECT_FILE}" ]];then
         cp "${SCRIPTDIR}/tpl/sublime-project__wordpress.txt" "${_SUBLIME_PROJECT_FILE}";
+    fi;
+    # Install tmp WPUTools
+    if [[ ! -d "${BASEDIR}wputools" ]];then
+        git clone https://github.com/WordPressUtilities/wputools "${BASEDIR}wputools";
     fi;
 fi;
 
