@@ -60,9 +60,18 @@
         {
             "folder_exclude_patterns":
             [
-                "WPUTheme"
+                "WPUTheme",
+                "projectid/assets/css",
+                "projectid/assets/scss/csscommon",
             ],
             "path": "htdocs/wp-content/themes"
+        },
+        {
+            "folder_exclude_patterns":
+            [
+                "htdocs",
+            ],
+            "path": "."
         }
     ]
 }
