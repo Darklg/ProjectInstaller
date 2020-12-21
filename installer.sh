@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_VERSION='0.5.1';
+_VERSION='0.6.0';
 cat <<EOF
 
 ###################################
@@ -15,6 +15,15 @@ EOF
 
 SCRIPTDIR="$( dirname "${BASH_SOURCE[0]}" )/";
 BASEDIR="$(pwd)/";
+
+###################################
+## Create config
+###################################
+
+if [[ "${1}" == 'create' ]];then
+    . "${SCRIPTDIR}inc/create-config.sh";
+    return 0;
+fi;
 
 ###################################
 ## Checks
