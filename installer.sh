@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_VERSION='0.6.0';
+_VERSION='0.6.1';
 cat <<EOF
 
 ###################################
@@ -30,7 +30,8 @@ fi;
 ###################################
 
 if [[ -z "${_MYSQL_USER}" ]];then
-    echo "Missing config file."
+    echo "Missing config file. You can create one if needed :"
+    echo ". ${SCRIPTDIR}installer.sh create;"
     return 0;
 fi;
 
