@@ -62,7 +62,7 @@
             [
                 "WPUTheme",
                 "projectid/assets/css",
-                "projectid/assets/scss/csscommon",
+                "projectid/src/scss/csscommon",
             ],
             "path": "htdocs/wp-content/themes"
         },
