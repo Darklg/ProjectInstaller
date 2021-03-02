@@ -1,0 +1,3 @@
+[submodule "tools/BashUtilities"]
+	path = tools/BashUtilities
+	url = https://github.com/Darklg/BashUtilities.git

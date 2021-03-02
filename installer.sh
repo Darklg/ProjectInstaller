@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_VERSION='0.6.2';
+_VERSION='0.7.0';
 cat <<EOF
 
 ###################################
@@ -15,6 +15,16 @@ EOF
 
 SCRIPTDIR="$( dirname "${BASH_SOURCE[0]}" )/";
 BASEDIR="$(pwd)/";
+
+###################################
+## Includes
+###################################
+
+_BASHUT_FILE="${SCRIPTDIR}tools/BashUtilities/bashutilities.sh";
+if [[ ! -f "${_BASHUT_FILE}" ]];then
+    git submodule update --init --recursive;
+fi;
+. "${_BASHUT_FILE}";
 
 ###################################
 ## Create config

@@ -20,6 +20,6 @@ _PROJECT_REPO='git@gitlab.com:myproject/myproject.git';
 
 # Install
 _INSTALL_CMS='wordpress';
-_INSTALL_TYPE='preprod';
+_INSTALL_TYPE='local';
 _INSTALL_FOLDER='htdocs';
 
