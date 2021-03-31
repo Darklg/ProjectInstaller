@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_VERSION='0.8.0';
+_VERSION='0.8.1';
 cat <<EOF
 
 ###################################
@@ -22,7 +22,7 @@ BASEDIR="$(pwd)/";
 
 _BASHUT_FILE="${SCRIPTDIR}tools/BashUtilities/bashutilities.sh";
 if [[ ! -f "${_BASHUT_FILE}" ]];then
-    git submodule update --init --recursive;
+    $(cd "${SCRIPTDIR}" && git submodule update --init --recursive);
 fi;
 . "${_BASHUT_FILE}";
 
