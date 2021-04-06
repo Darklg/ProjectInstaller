@@ -22,6 +22,8 @@ if [[ "${_PROJECT_HTTP}" == 'https' ]];then
 \$_SERVER['HTTPS'] = 'on';
 PHP
 );
+else
+    _PHP_EXTRA='http';
 fi;
 
 php "${BASEDIR}wp-cli.phar" core config --dbhost=${_MYSQL_HOST} --dbname=${_MYSQL_BASE} --dbuser=${_MYSQL_USER} --dbpass=${_MYSQL_PASS} --dbprefix=${_MYSQL_PREFIX} --extra-php <<PHP
@@ -44,6 +46,7 @@ define('DISABLE_WP_CRON', true);
 
 # Environment
 define('WPU_ENVIRONMENT', '${_INSTALL_TYPE}');
+define('WP_ENVIRONMENT_TYPE', '${_INSTALL_TYPE}');
 
 # Config
 define('EMPTY_TRASH_DAYS', 7);
@@ -53,14 +56,26 @@ define('WP_POST_REVISIONS', 6);
 define('WP_MEMORY_LIMIT', '128M');
 define('WP_MAX_MEMORY_LIMIT', '256M');
 
+# Updates
+define('AUTOMATIC_UPDATER_DISABLED', true);
+define('WP_AUTO_UPDATE_CORE', true);
+
 # Debug
 define('WP_DEBUG', true);
 if (WP_DEBUG) {
     @ini_set('display_errors', 0);
-    if (!defined('WP_DEBUG_LOG')) { define('WP_DEBUG_LOG', '${BASEDIR}logs/debug-' . date('dmY') . '.log'); }
-    if (!defined('WP_DEBUG_DISPLAY')) { define('WP_DEBUG_DISPLAY', 1); }
-    if (!defined('SCRIPT_DEBUG')) { define('SCRIPT_DEBUG', 1); }
-    if (!defined('SAVEQUERIES')) { define('SAVEQUERIES', 1); }
+    if (!defined('WP_DEBUG_LOG')) {
+        define('WP_DEBUG_LOG', 1);
+    }
+    if (!defined('WP_DEBUG_LOG')) {
+        define('WP_DEBUG_LOG', dirname(__FILE__) . '/../logs/debug-' . date('dmY') . '.log');
+    }
+    if (!defined('SCRIPT_DEBUG')) {
+        define('SCRIPT_DEBUG', 1);
+    }
+    if (!defined('SAVEQUERIES')) {
+        define('SAVEQUERIES', 1);
+    }
 }
 
 PHP
