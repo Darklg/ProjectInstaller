@@ -23,7 +23,7 @@ if [[ "${_PROJECT_HTTP}" == 'https' ]];then
 PHP
 );
 else
-    _PHP_EXTRA='http';
+    _PROJECT_HTTP='http';
 fi;
 
 php "${BASEDIR}wp-cli.phar" core config --dbhost=${_MYSQL_HOST} --dbname=${_MYSQL_BASE} --dbuser=${_MYSQL_USER} --dbpass=${_MYSQL_PASS} --dbprefix=${_MYSQL_PREFIX} --extra-php <<PHP
@@ -107,4 +107,26 @@ php "${BASEDIR}wp-cli.phar" rewrite flush --hard;
 
 if [[ "${_INSTALL_TYPE}" == 'local' ]];then
     rm -rf "${BASEDIR}wputools";
+fi;
+
+###################################
+## Init theme scripts
+###################################
+
+if [[ "${_INSTALL_TYPE}" == 'local' ]];then
+    THEME_FOLDERS="${BASEDIR}htdocs/wp-content/themes/*"
+    for theme_folder in $THEME_FOLDERS
+    do
+        if [[ ! -f "${theme_folder}/package.json" ]];then
+            continue;
+        fi;
+
+        # Do not install parent theme scripts
+        if [[ `basename ${theme_folder}` == "WPUTheme" ]];then
+            continue;
+        fi;
+
+        echo "Installing '${theme_folder}' theme scripts..."
+        $(cd "${theme_folder}" && yarn);
+    done
 fi;
