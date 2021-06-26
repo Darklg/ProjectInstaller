@@ -59,3 +59,5 @@ cd "${BASEDIR}";
 if [[ -f "${BASEDIR}post-install.sh" ]];then
     . "${BASEDIR}post-install.sh";
 fi;
+
+. "${SCRIPTDIR}inc/clean.sh";

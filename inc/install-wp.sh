@@ -8,6 +8,7 @@ cd "${BASEDIR}${_INSTALL_FOLDER}";
 
 if [[ ! -d "wp-includes" ]];then
     echo "# No WordPress install was found.";
+    . "${SCRIPTDIR}inc/clean.sh";
     return 0;
 fi;
 
@@ -100,14 +101,6 @@ php "${BASEDIR}wp-cli.phar" rewrite flush --hard;
 ###################################
 
 . "${BASEDIR}wputools/wputools.sh" settings
-
-###################################
-## Remove tmp WPUTools
-###################################
-
-if [[ "${_INSTALL_TYPE}" == 'local' ]];then
-    rm -rf "${BASEDIR}wputools";
-fi;
 
 ###################################
 ## Init theme scripts

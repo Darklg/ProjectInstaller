@@ -20,5 +20,6 @@ EOF
 );
 fi;
 
-echo "${_deploy_file}" >> "${BASEDIR}deploy.sh";
-
+if [[ "${_INSTALL_TYPE}" != 'local' ]];then
+    echo "${_deploy_file}" >> "${BASEDIR}deploy.sh";
+fi;
