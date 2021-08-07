@@ -18,6 +18,9 @@ fi;
 
 git clone "${_PROJECT_REPO}" "${_INSTALL_FOLDER}";
 cd "${_INSTALL_FOLDER}";
+if [[ "${_PROJECT_GITBRANCH}" != '' ]];then
+    git checkout "${_PROJECT_GITBRANCH}";
+fi;
 git submodule update --init --recursive;
 
 ###################################

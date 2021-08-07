@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_VERSION='0.9.1';
+_VERSION='0.9.2';
 cat <<EOF
 
 ###################################
@@ -15,6 +15,9 @@ EOF
 
 SCRIPTDIR="$( dirname "${BASH_SOURCE[0]}" )/";
 BASEDIR="$(pwd)/";
+if [[ -z "${_PROJECT_GITBRANCH}" ]];then
+    _PROJECT_GITBRANCH='';
+fi;
 
 ###################################
 ## Includes

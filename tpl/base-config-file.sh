@@ -17,6 +17,7 @@ _PROJECT_DOMAIN='myproject.test';
 _PROJECT_HTTP='http';
 _PROJECT_NAME='myproject';
 _PROJECT_REPO='mygitrepository';
+_PROJECT_GITBRANCH='main';
 
 # Install
 _INSTALL_CMS='wordpress';
