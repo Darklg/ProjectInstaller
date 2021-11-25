@@ -123,3 +123,19 @@ if [[ "${_INSTALL_TYPE}" == 'local' ]];then
         $(cd "${theme_folder}" && yarn);
     done
 fi;
+
+###################################
+## Add local overrides
+###################################
+
+if [[ "${_INSTALL_TYPE}" == 'local' ]];then
+    _PROJECT_INSTALLER_MUPLUGINS="${BASEDIR}htdocs/wp-content/mu-plugins/";
+    if [[ ! -f "${_PROJECT_INSTALLER_MUPLUGINS}wpu_local_overrides.php" ]];then
+        # Create mu-plugins dir if needed
+        if [[ ! -d "${_PROJECT_INSTALLER_MUPLUGINS}" ]];then
+            mkdir "${_PROJECT_INSTALLER_MUPLUGINS}";
+        fi;
+        # Load file
+        wget -O "${_PROJECT_INSTALLER_MUPLUGINS}wpu_local_overrides.php" https://raw.githubusercontent.com/WordPressUtilities/WPUInstaller/master/inc/wpu_local_overrides.php
+    fi;
+fi;
