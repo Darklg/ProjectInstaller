@@ -11,6 +11,13 @@ if [[ -f "${_INSTALL_FILE}" ]];then
     return 0;
 fi;
 
+if [[ -f "wp-config.php" ]];then
+    echo '- This is the project directory. Going to the parent folder.';
+    cd ..;
+    BASEDIR="$(pwd)/";
+    _INSTALL_FILE="${BASEDIR}install.sh";
+fi;
+
 cp "${SCRIPTDIR}tpl/base-config-file.sh" "${_INSTALL_FILE}";
 echo ". ${SCRIPTDIR}installer.sh;" >> "${_INSTALL_FILE}";
 echo '- Config file installed. Please edit it and launch it.';
@@ -20,7 +27,9 @@ echo '- Config file installed. Please edit it and launch it.';
 ###################################
 
 # Project
-_PROJECT_DIRNAME="${PWD##*/}";
+_PROJECT_DIRNAME="${PWD}";
+_PROJECT_DIRNAME=${_PROJECT_DIRNAME//\/htdocs/};
+_PROJECT_DIRNAME="${_PROJECT_DIRNAME##*/}";
 _use_project_dirname=$(bashutilities_get_yn "- Is this project named '${_PROJECT_DIRNAME}' ?" 'y');
 if [[ "${_use_project_dirname}" == 'y' ]];then
     bashutilities_sed "s/myproject/${_PROJECT_DIRNAME}/g" "${_INSTALL_FILE}";

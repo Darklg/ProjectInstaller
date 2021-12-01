@@ -18,6 +18,7 @@ _PROJECT_HTTP='http';
 _PROJECT_NAME='myproject';
 _PROJECT_REPO='mygitrepository';
 _PROJECT_GITBRANCH='main';
+_PROJECT_PROD_URL='https://www.myproject.fr';
 
 # Install
 _INSTALL_CMS='wordpress';
