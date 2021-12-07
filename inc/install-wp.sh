@@ -16,6 +16,11 @@ fi;
 ## Generate WP-Config
 ###################################
 
+_INSTALL_TYPE_WP="${_INSTALL_TYPE}";
+if [[ "${_INSTALL_TYPE_WP}" == 'prod' ]];then
+    _INSTALL_TYPE_WP='production';
+fi;
+
 _PHP_EXTRA="";
 if [[ "${_PROJECT_HTTP}" == 'https' ]];then
     _PHP_EXTRA=$(cat <<PHP
@@ -34,7 +39,7 @@ if(!isset(\$_SERVER['HTTP_HOST']) || !\$_SERVER['HTTP_HOST']){
     \$_SERVER['HTTP_HOST'] = '${_PROJECT_DOMAIN}';
 }
 if(!isset(\$_SERVER['SERVER_PROTOCOL']) || !\$_SERVER['SERVER_PROTOCOL']){
-    \$_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.0';
+    \$_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
 }
 
 ${_PHP_EXTRA}
@@ -47,7 +52,7 @@ define('DISABLE_WP_CRON', true);
 
 # Environment
 define('WPU_ENVIRONMENT', '${_INSTALL_TYPE}');
-define('WP_ENVIRONMENT_TYPE', '${_INSTALL_TYPE}');
+define('WP_ENVIRONMENT_TYPE', '${_INSTALL_TYPE_WP}');
 
 # Config
 define('EMPTY_TRASH_DAYS', 7);
@@ -59,7 +64,7 @@ define('WP_MAX_MEMORY_LIMIT', '256M');
 
 # Updates
 define('AUTOMATIC_UPDATER_DISABLED', true);
-define('WP_AUTO_UPDATE_CORE', true);
+define('WP_AUTO_UPDATE_CORE', false);
 
 # Debug
 define('WP_DEBUG', true);
