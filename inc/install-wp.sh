@@ -64,7 +64,14 @@ define('WP_MAX_MEMORY_LIMIT', '256M');
 
 # Updates
 define('AUTOMATIC_UPDATER_DISABLED', true);
-define('WP_AUTO_UPDATE_CORE', false);
+define('WP_AUTO_UPDATE_CORE', true);
+
+# Block external access
+#define('WP_HTTP_BLOCK_EXTERNAL', true);
+
+# Block file edit
+#define('DISALLOW_FILE_EDIT', true);
+#define('DISALLOW_FILE_MODS', true);
 
 # Debug
 define('WP_DEBUG', true);
@@ -74,13 +81,13 @@ if (WP_DEBUG) {
         define('WP_DEBUG_DISPLAY', false);
     }
     if (!defined('WP_DEBUG_LOG')) {
-        define('WP_DEBUG_LOG', dirname(__FILE__) . '/../logs/debug-' . date('dmY') . '.log');
+        define('WP_DEBUG_LOG', dirname(__FILE__) . '/../logs/debug-' . date('Ymd') . '.log');
     }
     if (!defined('SCRIPT_DEBUG')) {
         define('SCRIPT_DEBUG', 1);
     }
     if (!defined('SAVEQUERIES')) {
-        define('SAVEQUERIES', 1);
+        define('SAVEQUERIES', (php_sapi_name() !== 'cli'));
     }
 }
 
