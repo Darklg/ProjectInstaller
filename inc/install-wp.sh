@@ -64,7 +64,7 @@ define('WP_MAX_MEMORY_LIMIT', '256M');
 
 # Updates
 define('AUTOMATIC_UPDATER_DISABLED', true);
-define('WP_AUTO_UPDATE_CORE', true);
+define('WP_AUTO_UPDATE_CORE', false);
 
 # Block external access
 #define('WP_HTTP_BLOCK_EXTERNAL', true);
@@ -74,7 +74,9 @@ define('WP_AUTO_UPDATE_CORE', true);
 #define('DISALLOW_FILE_MODS', true);
 
 # Debug
-define('WP_DEBUG', true);
+if(!defined('WP_DEBUG')){
+    define('WP_DEBUG', true);
+}
 if (WP_DEBUG) {
     @ini_set('display_errors', 0);
     if (!defined('WP_DEBUG_DISPLAY')) {
@@ -82,9 +84,6 @@ if (WP_DEBUG) {
     }
     if (!defined('WP_DEBUG_LOG')) {
         define('WP_DEBUG_LOG', dirname(__FILE__) . '/../logs/debug-' . date('Ymd') . '.log');
-    }
-    if (!defined('SCRIPT_DEBUG')) {
-        define('SCRIPT_DEBUG', 1);
     }
     if (!defined('SAVEQUERIES')) {
         define('SAVEQUERIES', (php_sapi_name() !== 'cli'));

@@ -46,6 +46,7 @@
                 "happyf*",
                 "limit-*",
                 "polylang*",
+                "safe-svg*",
                 "post-types-*",
                 "redirection",
                 "redis-*",
