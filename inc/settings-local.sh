@@ -17,6 +17,7 @@ if [[ "${_INSTALL_CMS}" == 'wordpress' ]];then
     _SUBLIME_PROJECT_FILE="${BASEDIR}${_PROJECT_NAME}.sublime-project";
     if [[ ! -f "${_SUBLIME_PROJECT_FILE}" ]];then
         cp "${SCRIPTDIR}/tpl/sublime-project__wordpress.txt" "${_SUBLIME_PROJECT_FILE}";
+        bashutilities_sed "s/projectid/${_PROJECT_ID}/g" "${_SUBLIME_PROJECT_FILE}";
     fi;
     # Install tmp WPUTools
     if [[ ! -d "${BASEDIR}wputools" ]];then

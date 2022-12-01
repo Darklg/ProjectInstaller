@@ -2,6 +2,26 @@
     "folders":
     [
         {
+            "name" : "Theme - JS",
+            "path": "htdocs/wp-content/themes/projectid/src/js"
+        },
+        {
+            "name" : "Theme - CSS",
+            "path": "htdocs/wp-content/themes/projectid/src/scss/projectid"
+        },
+        {
+            "name" : "Theme - Images",
+            "path": "htdocs/wp-content/themes/projectid/assets/images"
+        },
+        {
+            "name" : "Theme - Blocks",
+            "path": "htdocs/wp-content/themes/projectid/tpl/blocks"
+        },
+        {
+            "name" : "MU - Blocks",
+            "path": "htdocs/wp-content/mu-plugins/projectid/blocks/"
+        },
+        {
             "file_exclude_patterns":
             [
                 "htdocs/.htaccess",
@@ -53,9 +73,7 @@
                 "taxonomy-*",
                 "w3*",
                 "woocommerce*",
-                "wp-katex*",
-                "wp-mail-*",
-                "wp-rocket*",
+                "wp-*",
                 "wpuoptions/assets/select2",
             ],
             "path": "htdocs/wp-content/plugins"
@@ -69,6 +87,9 @@
                 "WPUTheme",
                 "WPUTheme/scss",
                 "projectid/assets/css",
+                "projectid/assets/images",
+                "projectid/src/js",
+                "projectid/src/scss/projectid",
                 "projectid/src/scss/csscommon",
             ],
             "path": "htdocs/wp-content/themes"
