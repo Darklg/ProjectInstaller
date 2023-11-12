@@ -32,6 +32,16 @@ else
     _PROJECT_HTTP='http';
 fi;
 
+
+if [[ "${_INSTALL_TYPE}" == 'local' ]];then
+    _PHP_EXTRA=$(cat <<PHP
+${_PHP_EXTRA}
+define('WPUTHEME_ASSETS_VERSION', time());
+PHP
+);
+fi;
+
+
 php "${BASEDIR}wp-cli.phar" core config --dbhost=${_MYSQL_HOST} --dbname=${_MYSQL_BASE} --dbuser=${_MYSQL_USER} --dbpass=${_MYSQL_PASS} --dbprefix=${_MYSQL_PREFIX} --extra-php <<PHP
 
 # URLs
