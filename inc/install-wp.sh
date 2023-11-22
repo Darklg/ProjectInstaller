@@ -149,14 +149,48 @@ fi;
 ## Add local overrides
 ###################################
 
+_PROJECT_INSTALLER_LOCALOVERRIDES="${_PROJECT_INSTALLER_MUPLUGINS}wpu_local_overrides.php";
 if [[ "${_INSTALL_TYPE}" == 'local' ]];then
     _PROJECT_INSTALLER_MUPLUGINS="${BASEDIR}htdocs/wp-content/mu-plugins/";
-    if [[ ! -f "${_PROJECT_INSTALLER_MUPLUGINS}wpu_local_overrides.php" ]];then
+    if [[ ! -f "${_PROJECT_INSTALLER_LOCALOVERRIDES}" ]];then
         # Create mu-plugins dir if needed
         if [[ ! -d "${_PROJECT_INSTALLER_MUPLUGINS}" ]];then
             mkdir "${_PROJECT_INSTALLER_MUPLUGINS}";
         fi;
         # Load file
-        wget -O "${_PROJECT_INSTALLER_MUPLUGINS}wpu_local_overrides.php" https://raw.githubusercontent.com/WordPressUtilities/WPUInstaller/master/inc/wpu_local_overrides.php
+        wget -O "${_PROJECT_INSTALLER_LOCALOVERRIDES}" https://raw.githubusercontent.com/WordPressUtilities/WPUInstaller/master/inc/wpu_local_overrides.php
     fi;
+fi;
+
+# Force https & www
+if [[ -f "${_PROJECT_INSTALLER_LOCALOVERRIDES}" && "${_PROJECT_HTTP}" == "https" ]];then
+    _PROJECT_INSTALLER_LOCALOVERRIDES_CONTENT=$(cat <<EOF
+
+add_filter('mod_rewrite_rules', function (\$rules) {
+    \$new_rules = <<<EOT
+
+# Force WWW
+# <IfModule mod_rewrite.c>
+# RewriteEngine On
+# RewriteBase /
+# RewriteCond %{HTTP_HOST} !^www.${_PROJECT_ID}.com\$ [NC]
+# RewriteRule ^(.*)\$ https://www.${_PROJECT_ID}.com/\$1 [L,R=301]
+# </IfModule>
+
+# Force https
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)\$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+EOT;
+    return \$new_rules . \$rules;
+}, 10, 1);
+
+EOF
+);
+
+    echo "${_PROJECT_INSTALLER_LOCALOVERRIDES_CONTENT}" >> "${_PROJECT_INSTALLER_LOCALOVERRIDES}";
+
 fi;
