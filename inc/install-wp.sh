@@ -194,3 +194,16 @@ EOF
     echo "${_PROJECT_INSTALLER_LOCALOVERRIDES_CONTENT}" >> "${_PROJECT_INSTALLER_LOCALOVERRIDES}";
 
 fi;
+
+###################################
+## Directories
+###################################
+
+# Create upload directory if needed
+_PROJECT_INSTALLER_UPLOADS_DIR="${BASEDIR}htdocs/wp-content/uploads/";
+if [[ ! -d "${_PROJECT_INSTALLER_UPLOADS_DIR}" ]];then
+    mkdir "${_PROJECT_INSTALLER_UPLOADS_DIR}"
+fi;
+
+# Add version txt
+echo $(date +%s) > "${_PROJECT_INSTALLER_UPLOADS_DIR}version.txt";
