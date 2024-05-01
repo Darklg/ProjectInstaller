@@ -1,0 +1,90 @@
+{
+    "folders": [
+        {
+            "name": "Theme - JS",
+            "path": "htdocs/wp-content/themes/projectid/src/js"
+        },
+        {
+            "name": "Theme - CSS",
+            "path": "htdocs/wp-content/themes/projectid/src/scss/projectid"
+        },
+        {
+            "name": "Theme - Images",
+            "path": "htdocs/wp-content/themes/projectid/assets/images"
+        },
+        {
+            "name": "Theme - Blocks",
+            "path": "htdocs/wp-content/themes/projectid/tpl/blocks"
+        },
+        {
+            "name": "MU - Blocks",
+            "path": "htdocs/wp-content/mu-plugins/projectid/blocks/"
+        },
+        {
+            "path": "."
+        },
+        {
+            "path": "htdocs/wp-content/plugins"
+        },
+        {
+            "path": "htdocs/wp-content/mu-plugins"
+        },
+        {
+            "path": "htdocs/wp-content/themes"
+        }
+    ],
+    "settings": {
+        "files.exclude": {
+            "**/.phpintel": true,
+            "**/node_modules": true,
+            "**/wp-includes": true,
+            "acf-extend*": true,
+            "admin-col*": true,
+            "advanced-*": true,
+            "code-profiler*": true,
+            "crop-thumbnails*": true,
+            "duplicate-*": true,
+            "projectid/assets/css": true,
+            "projectid/assets/images": true,
+            "projectid/src/js": true,
+            "projectid/src/scss/projectid": true,
+            "google-sitemap-generator*": true,
+            "happyfiles*": true,
+            "htdocs/wp-admin": true,
+            "htdocs/wp-content/cache": true,
+            "htdocs/wp-content/languages": true,
+            "htdocs/wp-content/mu-plugins": true,
+            "htdocs/wp-content/plugins": true,
+            "htdocs/wp-content/themes": true,
+            "htdocs/wp-content/upgrade": true,
+            "htdocs/wp-content/uploads": true,
+            "htdocs/wp-includes": true,
+            "limit-login-at*": true,
+            "polylang*": true,
+            "post-types-order*": true,
+            "query-monitor*": true,
+            "redirection": true,
+            "redis-*": true,
+            "safe-svg*": true,
+            "taxonomy-*": true,
+            "two-factor*": true,
+            "w3*": true,
+            "woocommerce*": true,
+            "wp-activate.php": true,
+            "wp-blog-header.php": true,
+            "wp-comments-post.php": true,
+            "wp-config-sample.php": true,
+            "wp-cron.php": true,
+            "wp-links-opml.php": true,
+            "wp-load.php": true,
+            "wp-login.php": true,
+            "wp-mail.php": true,
+            "wp-settings.php": true,
+            "wp-signup.php": true,
+            "wp-trackback.php": true,
+            "wpuoptions/assets/select2": true,
+            "WPUTheme/scss": true,
+            "xmlrpc.php": true
+        }
+    }
+}

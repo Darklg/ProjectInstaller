@@ -66,3 +66,10 @@ if [[ -f "${_config_file}" ]];then
         fi;
     fi;
 fi;
+
+# Detect install type from host
+_TMP_INSTALL_TYPE='local';
+if [[ "${PWD}" == *homez* || -d ~/ik-logs ]]; then
+    _TMP_INSTALL_TYPE='prod';
+fi;
+bashutilities_sed "s/tmpinstalltype/${_TMP_INSTALL_TYPE}/g" "${_INSTALL_FILE}";

@@ -37,7 +37,7 @@ cd "${BASEDIR}";
 rm wputools-local.sh wp-cli.phar wputools-local.sh wputools-urls.txt *.sublime-workspace;
 
 if [[ ! -f "bin/magento" ]];then
-    rm -rf deploy.sh *.sublime-project;
+    rm -rf deploy.sh *.sublime-project *.code-workspace;
 fi;
 rm -rf logs;
 rm -rf "${BASEDIR}/${_INSTALL_FOLDER}";

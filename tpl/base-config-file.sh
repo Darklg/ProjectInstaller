@@ -22,6 +22,6 @@ _PROJECT_PROD_URL='https://www.myproject.fr';
 
 # Install
 _INSTALL_CMS='wordpress';
-_INSTALL_TYPE='local';
+_INSTALL_TYPE='tmpinstalltype';
 _INSTALL_FOLDER='htdocs';
 

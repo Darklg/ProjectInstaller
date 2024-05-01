@@ -20,6 +20,10 @@ _INSTALL_TYPE_WP="${_INSTALL_TYPE}";
 if [[ "${_INSTALL_TYPE_WP}" == 'prod' ]];then
     _INSTALL_TYPE_WP='production';
 fi;
+_INSTALL_TYPE_WP="${_INSTALL_TYPE}";
+if [[ "${_INSTALL_TYPE_WP}" == 'preprod' ]];then
+    _INSTALL_TYPE_WP='staging';
+fi;
 
 _PHP_EXTRA="";
 if [[ "${_PROJECT_HTTP}" == 'https' ]];then
@@ -207,3 +211,25 @@ fi;
 
 # Add version txt
 echo $(date +%s) > "${_PROJECT_INSTALLER_UPLOADS_DIR}version.txt";
+
+###################################
+## Security
+###################################
+
+# Protect wp-admin
+if [[ "${_INSTALL_TYPE_WP} == production" ]];then
+    _protect_wpadmin=$(bashutilities_get_yn "- Protect wp-admin?" 'y');
+    if [[ "${_protect_wpadmin}" == 'y' ]];then
+        cd "${BASEDIR}htdocs/wp-admin" || exit;
+        bash <(wget -qO- https://raw.githubusercontent.com/Darklg/quick-htpasswd/main/launch.sh);
+        cd "${BASEDIR}htdocs" || exit;
+    fi;
+fi;
+if [[ "${_INSTALL_TYPE_WP}" == 'staging' ]];then
+    _protect_dir=$(bashutilities_get_yn "- Protect directory ?" 'y');
+    if [[ "${_protect_dir}" == 'y' ]];then
+        cd "${BASEDIR}" || exit;
+        bash <(wget -qO- https://raw.githubusercontent.com/Darklg/quick-htpasswd/main/launch.sh);
+        cd "${BASEDIR}htdocs" || exit;
+    fi;
+fi;

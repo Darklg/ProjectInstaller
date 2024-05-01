@@ -19,6 +19,11 @@ if [[ "${_INSTALL_CMS}" == 'wordpress' ]];then
         cp "${SCRIPTDIR}/tpl/sublime-project__wordpress.txt" "${_SUBLIME_PROJECT_FILE}";
         bashutilities_sed "s/projectid/${_PROJECT_ID}/g" "${_SUBLIME_PROJECT_FILE}";
     fi;
+    _CODE_WORKSPACE_FILE="${BASEDIR}${_PROJECT_NAME}.code-workspace";
+    if [[ ! -f "${_CODE_WORKSPACE_FILE}" ]];then
+        cp "${SCRIPTDIR}/tpl/code-workspace__wordpress.txt" "${_CODE_WORKSPACE_FILE}";
+        bashutilities_sed "s/projectid/${_PROJECT_ID}/g" "${_CODE_WORKSPACE_FILE}";
+    fi;
     # Install tmp WPUTools
     if [[ ! -d "${BASEDIR}wputools" ]];then
         git clone https://github.com/WordPressUtilities/wputools "${BASEDIR}wputools";
