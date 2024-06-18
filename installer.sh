@@ -1,10 +1,10 @@
 #!/bin/bash
 
-_VERSION='0.12.0';
+_PROJECT_INSTALLER_VERSION='0.12.1';
 cat <<EOF
 
 ###################################
-## Project Installer v ${_VERSION}
+## Project Installer v ${_PROJECT_INSTALLER_VERSION}
 ###################################
 
 EOF
