@@ -217,7 +217,7 @@ echo $(date +%s) > "${_PROJECT_INSTALLER_UPLOADS_DIR}version.txt";
 ###################################
 
 # Protect wp-admin
-if [[ "${_INSTALL_TYPE_WP} == production" ]];then
+if [[ "${_INSTALL_TYPE_WP}" == 'production' ]];then
     _protect_wpadmin=$(bashutilities_get_yn "- Protect wp-admin?" 'y');
     if [[ "${_protect_wpadmin}" == 'y' ]];then
         cd "${BASEDIR}htdocs/wp-admin" || exit;

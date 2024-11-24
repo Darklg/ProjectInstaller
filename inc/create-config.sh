@@ -11,7 +11,7 @@ if [[ -f "${_INSTALL_FILE}" ]];then
     return 0;
 fi;
 
-if [[ -f "wp-config.php" ]];then
+if [[ -f "wp-blog-header.php" || -f "wp-settings.php" ]];then
     echo '- This is the project directory. Going to the parent folder.';
     cd ..;
     BASEDIR="$(pwd)/";
@@ -38,7 +38,9 @@ fi;
 # Repository
 if [[ -f "${BASEDIR}htdocs/.git/config" ]];then
     _PROJECT_REPO=$(cd "${BASEDIR}htdocs/" && git config --get remote.origin.url);
+    _PROJECT_BRANCH=$(cd "${BASEDIR}htdocs/" && git branch --show-current);
     bashutilities_sed "s#mygitrepository#${_PROJECT_REPO}#g" "${_INSTALL_FILE}";
+    bashutilities_sed "s#mygitbranch#${_PROJECT_BRANCH}#g" "${_INSTALL_FILE}";
 fi;
 
 # MySQL

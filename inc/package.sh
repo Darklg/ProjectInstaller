@@ -6,7 +6,7 @@
 
 cd "${BASEDIR}/${_INSTALL_FOLDER}";
 
-if [[ -f "wp-config.php" ]];then
+if [[ -f "wp-blog-header.php" || -f "wp-settings.php" ]];then
     wputools backup;
 fi;
 
