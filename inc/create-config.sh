@@ -45,6 +45,9 @@ fi;
 
 # MySQL
 _config_file="${BASEDIR}htdocs/wp-config.php";
+if [[ -f "${BASEDIR}wp-config.php" ]];then
+    _config_file="${BASEDIR}wp-config.php";
+fi;
 if [[ -f "${_config_file}" ]];then
     _TMP_DB_NAME=$(bashutilities_search_extract_file__php_constant "DB_NAME" "${_config_file}");
     _TMP_DB_USER=$(bashutilities_search_extract_file__php_constant "DB_USER" "${_config_file}");

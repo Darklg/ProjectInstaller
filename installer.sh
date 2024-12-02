@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_PROJECT_INSTALLER_VERSION='0.13.0';
+_PROJECT_INSTALLER_VERSION='0.13.1';
 cat <<EOF
 
 ###################################
