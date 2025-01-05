@@ -74,7 +74,10 @@ fi;
 
 # Detect install type from host
 _TMP_INSTALL_TYPE='local';
-if [[ "${PWD}" == *homez* || -d ~/ik-logs ]]; then
+if [[ "${PWD}" == *homez* || -d ~/ik-logs || "${PWD}" == */prod* ]]; then
     _TMP_INSTALL_TYPE='production';
+fi;
+if [[ "${PWD}" == *staging* || "${PWD}" == *preprod* ]]; then
+    _TMP_INSTALL_TYPE='staging';
 fi;
 bashutilities_sed "s/tmpinstalltype/${_TMP_INSTALL_TYPE}/g" "${_INSTALL_FILE}";
