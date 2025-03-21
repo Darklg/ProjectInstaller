@@ -162,7 +162,7 @@ if [[ "${_INSTALL_TYPE}" == 'local' ]];then
             mkdir "${_PROJECT_INSTALLER_MUPLUGINS}";
         fi;
         # Load file
-        wget -O "${_PROJECT_INSTALLER_LOCALOVERRIDES}" https://raw.githubusercontent.com/WordPressUtilities/WPUInstaller/master/inc/wpu_local_overrides.php
+        wget -O "${_PROJECT_INSTALLER_MUPLUGINS}${_PROJECT_INSTALLER_LOCALOVERRIDES}" https://raw.githubusercontent.com/WordPressUtilities/WPUInstaller/main/inc/wpu_local_overrides.php
     fi;
 fi;
 
