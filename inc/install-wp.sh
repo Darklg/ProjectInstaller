@@ -233,3 +233,19 @@ if [[ "${_INSTALL_TYPE_WP}" == 'staging' ]];then
         cd "${BASEDIR}htdocs" || exit;
     fi;
 fi;
+
+###################################
+## Ask if we want to install DB
+###################################
+
+_install_db=$(bashutilities_get_yn "- Do you want to install the database ?" 'y');
+if [[ "${_install_db}" == 'y' ]];then
+    cd "${BASEDIR}htdocs";
+    php "${BASEDIR}wp-cli.phar" core install \
+        --url="${_PROJECT_HTTP}://${_PROJECT_DOMAIN}" \
+        --title="${_PROJECT_NAME}" \
+        --admin_user="admin" \
+        --admin_password="admin" \
+        --admin_email="admin@${_PROJECT_DOMAIN}" \
+        --skip-email;
+fi;
