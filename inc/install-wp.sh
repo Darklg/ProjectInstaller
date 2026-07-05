@@ -112,7 +112,7 @@ PHP
 
 if [[ -f "${BASEDIR}dump.tar.gz" ]];then
     echo "# Import database";
-    . "${BASEDIR}wputools/wputools.sh" dbimport "${BASEDIR}dump.tar.gz";
+    /bin/bash "${BASEDIR}wputools/wputools.sh" dbimport "${BASEDIR}dump.tar.gz";
 fi;
 
 ###################################
@@ -125,7 +125,7 @@ php "${BASEDIR}wp-cli.phar" rewrite flush --hard;
 ## Create settings file
 ###################################
 
-. "${BASEDIR}wputools/wputools.sh" settings
+/bin/bash "${BASEDIR}wputools/wputools.sh" settings
 
 ###################################
 ## Init theme scripts
